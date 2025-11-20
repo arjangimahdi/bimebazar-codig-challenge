@@ -1,0 +1,47 @@
+@font-face {
+  font-family: Peyda;
+  src:
+    url('./peyda/woff2/peyda-regular.woff2') format('woff2'),
+    url('./peyda/woff/peyda-regular.woff') format('woff'),
+    url('./peyda/eot/peyda-regular.eot'),
+    url('./peyda/ttf/peyda-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Peyda;
+  src:
+    url('./peyda/woff2/peyda-medium.woff2') format('woff2'),
+    url('./peyda/woff/peyda-medium.woff') format('woff'),
+    url('./peyda/eot/peyda-medium.eot'),
+    url('./peyda/ttf/peyda-medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Peyda;
+  src:
+    url('./peyda/woff2/peyda-semibold.woff2') format('woff2'),
+    url('./peyda/woff/peyda-semibold.woff') format('woff'),
+    url('./peyda/eot/peyda-semibold.eot'),
+    url('./peyda/ttf/peyda-semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Peyda;
+  src:
+    url('./peyda/woff2/peyda-bold.woff2') format('woff2'),
+    url('./peyda/woff/peyda-bold.woff') format('woff'),
+    url('./peyda/eot/peyda-bold.eot'),
+    url('./peyda/ttf/peyda-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
