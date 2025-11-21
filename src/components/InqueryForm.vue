@@ -87,7 +87,7 @@ function handleSubmit() {
         title: 'خطا',
         message: error,
         type: 'error',
-        timeout: 4000,
+        timeout: 7000,
       })
     })
     return
