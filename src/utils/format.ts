@@ -1,3 +1,5 @@
+import type { PlateValue } from '@/types'
+
 const PERSIAN_ZERO = 0x06f0
 const ARABIC_ZERO = 0x0660
 const ASCII_ZERO = 0x30
@@ -57,36 +59,25 @@ export function formatPersianYearMonth(dateStr: string): string {
   }
 }
 
-export interface FormattedPlate {
-  normalized: string
-  formatted: string
-}
-
 export function formatCurrency(amount: number): string {
   return amount.toLocaleString('fa-IR')
 }
 
-export interface PlateParts {
-  prefix: string
-  suffix: string
-  word: string
-  code: string
-}
-
-export function parsePlateParts(plateRaw: string): PlateParts {
-  const raw = (plateRaw || '').replace(/\s+/g, '')
-  const idx = raw.lastIndexOf('-')
-  let left = raw
+export function parsePlateParts(plateRaw: string): PlateValue {
+  const idx = plateRaw.lastIndexOf('-')
+  let left = plateRaw
   let code = ''
   if (idx > -1) {
-    left = raw.slice(0, idx)
-    code = raw.slice(idx + 1)
+    left = plateRaw.slice(0, idx)
+    code = plateRaw.slice(idx + 1)
   }
+
   const latinLeft = toLatinDigits(left)
   const word = latinLeft.replace(/\d/g, '')
   const digitsPart = latinLeft.replace(/[^\d]/g, '')
   const prefix = toPersianDigits(digitsPart.slice(0, 2))
   const suffix = toPersianDigits(digitsPart.slice(2))
   const codeFa = toPersianDigits(code)
+
   return { prefix, suffix, word, code: codeFa }
 }
