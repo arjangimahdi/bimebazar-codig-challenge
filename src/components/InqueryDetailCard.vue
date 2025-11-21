@@ -34,8 +34,9 @@
 </template>
 
 <script setup lang="ts">
-import Plate from '@/components/Plate.vue'
-import type { InqueryTransformed } from '@/composables/inquery/types'
+import Plate from '@/components/PlateNumber.vue'
+
+import type { InqueryTransformed } from '@/composables/inquery/inquery.types'
 defineProps<{
   inquiry: InqueryTransformed
 }>()

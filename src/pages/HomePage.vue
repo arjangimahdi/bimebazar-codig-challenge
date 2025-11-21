@@ -21,7 +21,7 @@
 import { ref } from 'vue'
 
 import InqueryForm from '@/components/InqueryForm.vue'
-import useInquery from '@/composables/inquery/useInquery'
+import { useInquery } from '@/composables/inquery'
 import type { InqueryTransformed } from '@/composables/inquery'
 import InqueryDetailCard from '@/components/InqueryDetailCard.vue'
 import InqueryDetailCardSkeleton from '@/components/InqueryDetailCardSkeleton.vue'

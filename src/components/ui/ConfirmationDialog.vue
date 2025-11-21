@@ -18,27 +18,9 @@
             <div
               v-if="modelValue"
               ref="dialogContent"
-              class="relative z-10 bg-white shadow-xl"
+              class="relative z-10 bg-white shadow-xl rounded-md"
               @click.stop
             >
-              <div
-                class="py-3 px-4 flex flex-row justify-between items-center gap-x-1 border-b border-gray-200"
-              >
-                <slot name="title">
-                  <span v-if="title" class="text-base font-bold">
-                    {{ title }}
-                  </span>
-                </slot>
-                <button
-                  v-if="!hideCloseButton"
-                  class="p-1 text-xs bg-transparent cursor-pointer"
-                  aria-label="بستن"
-                  @click="close"
-                >
-                  <Icon icon="mdi:close" class="size-6" />
-                </button>
-              </div>
-
               <div
                 class="dialog-content"
                 :class="{
@@ -46,7 +28,24 @@
                   'p-0': !padded,
                 }"
               >
-                <slot />
+                <div class="p-4">
+                  <slot />
+                </div>
+
+                <div class="flex flex-row justify-between gap-x-2 mt-4">
+                  <button
+                    class="px-4 py-2 w-full text-white bg-red-500 rounded-md cursor-pointer hover:bg-red-600 transition-all duration-300"
+                    @click="confirm"
+                  >
+                    تایید
+                  </button>
+                  <button
+                    @click="close"
+                    class="px-4 py-2 w-full bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300 transition-all duration-300"
+                  >
+                    انصراف
+                  </button>
+                </div>
               </div>
 
               <div v-if="$slots.footer" class="mt-4 flex justify-end space-x-2">
@@ -62,7 +61,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { Icon } from '@iconify/vue'
 
 const props = withDefaults(
   defineProps<{
@@ -90,6 +88,7 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void
   (e: 'close'): void
   (e: 'open'): void
+  (e: 'confirm'): void
 }>()
 
 const dialogContent = ref<HTMLElement | null>(null)
@@ -97,6 +96,10 @@ const dialogContent = ref<HTMLElement | null>(null)
 const close = () => {
   emit('update:modelValue', false)
   emit('close')
+}
+
+const confirm = () => {
+  emit('confirm')
 }
 
 const handleOverlayClick = (event: MouseEvent) => {

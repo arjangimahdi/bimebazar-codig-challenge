@@ -23,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: 'UiTabs' })
 import { Icon } from '@iconify/vue'
 import { RouterLink } from 'vue-router'
 

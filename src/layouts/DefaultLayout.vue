@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import Tabs from '@/components/Tabs.vue'
-import Notifications from '@/components/Notifications.vue'
+import Tabs from '@/components/ui/Tabs.vue'
+import Notifications from '@/components/ui/Notifications.vue'
 import tabs from '@/constants/tabs'
 </script>

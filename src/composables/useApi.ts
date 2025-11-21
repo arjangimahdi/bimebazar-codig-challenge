@@ -3,7 +3,6 @@ import type { ApiConfig, RequestOptions, ApiResponse, ApiClient } from '@/types/
 export const useApi = (config: ApiConfig = {}): ApiClient => {
   const {
     baseURL = import.meta.env.VITE_APP_API_BASE_URL as string,
-    timeout = Number(import.meta.env.VITE_APP_API_TIMEOUT) ?? 15000,
     headers: defaultHeaders = {},
   } = config
 

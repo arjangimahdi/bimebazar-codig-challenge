@@ -7,7 +7,7 @@
         <span class="text-base font-bold"> {{ inquiry.brand }} {{ inquiry.model }} </span>
         <span class="text-xs text-gray-500"> {{ inquiry.createdAt }} </span>
       </div>
-      <Plate :plate="inquiry.plate" />
+      <PlateNumber :plate="inquiry.plate" />
     </div>
     <div class="flex items-center justify-end gap-x-2">
       <button
@@ -43,11 +43,13 @@
 
 <script setup lang="ts">
 import { ref, defineAsyncComponent } from 'vue'
-const Modal = defineAsyncComponent(() => import('@/components/Modal.vue'))
-const BottomSheet = defineAsyncComponent(() => import('@/components/BottomSheet.vue'))
-const ConfirmationDialog = defineAsyncComponent(() => import('@/components/ConfirmationDialog.vue'))
-import Plate from '@/components/Plate.vue'
-import type { InqueryTransformed } from '@/composables/inquery/types'
+const Modal = defineAsyncComponent(() => import('@/components/ui/Modal.vue'))
+const BottomSheet = defineAsyncComponent(() => import('@/components/ui/BottomSheet.vue'))
+const ConfirmationDialog = defineAsyncComponent(
+  () => import('@/components/ui/ConfirmationDialog.vue'),
+)
+import PlateNumber from '@/components/PlateNumber.vue'
+import type { InqueryTransformed } from '@/composables/inquery/inquery.types'
 import InqueryDetailCard from '@/components/InqueryDetailCard.vue'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
@@ -56,7 +58,7 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 const isMobile = breakpoints.smaller('md')
 
 const props = defineProps<{
-  inquiry: InqueryTransformed
+  inquiry: InqueryTransformed & { plateEn: string; createdAt?: number | string }
 }>()
 
 const emit = defineEmits<{

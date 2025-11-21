@@ -6,7 +6,7 @@ import type { InqueryTransformed } from '.'
 import { insert } from '@/providers/indexedDb'
 import { timeAgo } from '@/utils/time'
 
-export default function useInquery() {
+export const useInquery = () => {
   const isLoading = ref(false)
   const { notify } = useNotify()
 

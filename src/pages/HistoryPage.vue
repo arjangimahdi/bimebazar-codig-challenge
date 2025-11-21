@@ -25,15 +25,18 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import type { InqueryTransformed } from '@/composables/inquery/types'
+import type { InqueryTransformed } from '@/composables/inquery/inquery.types'
 import { getAll, remove } from '@/providers/indexedDb'
 import InqueryListCard from '@/components/InqueryListCard.vue'
-const inqueries = ref<InqueryTransformed[]>([])
+type InqueryListItem = InqueryTransformed & { plateEn: string; createdAt?: number | string }
+const inqueries = ref<InqueryListItem[]>([])
 
 onMounted(async () => {
-  inqueries.value = (await getAll()).map(
-    (inquiry) => ({ ...inquiry, plate: JSON.parse(inquiry.plate as string) }) as InqueryTransformed,
-  )
+  const records = (await getAll()) as Array<{ plate: string } & Partial<InqueryListItem>>
+  inqueries.value = records.map((inquiry) => ({
+    ...(inquiry as InqueryListItem),
+    plate: JSON.parse(inquiry.plate as string),
+  }))
 })
 
 const removeInquery = (plateEn: string) => {

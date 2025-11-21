@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import MaskInput from '@/components/MaskInput.vue'
+import MaskInput from '@/components/ui/MaskInput.vue'
 import plateWords from '@/constants/plate-words.const'
 import { validatePlate } from '@/validation/plate'
 import { useNotify } from '@/composables/useNotify'

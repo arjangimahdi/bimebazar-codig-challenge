@@ -1,4 +1,4 @@
-import type { InqueryResponseDto, InqueryTransformed } from './types'
+import type { InqueryResponseDto, InqueryTransformed } from './inquery.types'
 import { formatPersianYearMonth, parsePlateParts, formatCurrency } from '@/utils/format'
 import { calculateAnnualInsurancePrice } from '@/utils/pricing'
 

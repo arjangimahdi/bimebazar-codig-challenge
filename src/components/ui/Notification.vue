@@ -32,6 +32,7 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: 'UiNotification' })
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
 
