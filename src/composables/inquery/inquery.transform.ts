@@ -6,7 +6,6 @@ export function transformInqueryResponse(dto: InqueryResponseDto): InqueryTransf
   const plate = parsePlateParts(dto.plate)
   const manufacture = formatPersianYearMonth(dto.make_date)
   const annualInsurancePrice = calculateAnnualInsurancePrice(dto.make_date)
-  const annualInsurancePriceFormatted = formatCurrency(annualInsurancePrice, 'fa-IR')
   return {
     plate: {
       prefix: plate.prefix,
@@ -19,7 +18,6 @@ export function transformInqueryResponse(dto: InqueryResponseDto): InqueryTransf
     modelYear: manufacture,
     ownerFullName: dto.owner?.name_full || '',
     ownerNationalId: dto.owner?.national_id || '',
-    annualInsurancePrice,
-    annualInsurancePriceFormatted,
+    annualInsurancePrice: formatCurrency(annualInsurancePrice),
   }
 }

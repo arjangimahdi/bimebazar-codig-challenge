@@ -22,14 +22,13 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  plate: {
-    prefix: string
-    suffix: string
-    word: string
-    code: string
-  }
-}>()
+import type { PlateValue } from '@/types'
+
+interface Props {
+  plate: PlateValue
+}
+
+defineProps<Props>()
 </script>
 
 <style scoped>

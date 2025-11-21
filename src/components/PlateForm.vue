@@ -36,9 +36,10 @@
     </div>
     <button
       @click="handleSubmit"
-      class="w-full h-12 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 transition-all duration-300"
+      :disabled="props.isLoading"
+      class="w-full h-12 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      تایید و ادامه
+      {{ props.isLoading ? 'در حال ارسال...' : 'تایید و ادامه' }}
     </button>
   </div>
 </template>
@@ -47,6 +48,18 @@
 import { computed, ref } from 'vue'
 import MaskInput from '@/components/MaskInput.vue'
 import plateWords from '@/constants/plate-words.const'
+import { validatePlate } from '@/validation/plate'
+import { useNotify } from '@/composables/useNotify'
+
+interface Emits {
+  (e: 'submit', plate: string): void
+}
+
+interface Props {
+  isLoading?: boolean
+}
+
+const props = defineProps<Props>()
 
 const plateCode = ref('')
 const platePrefix = ref('')
@@ -58,11 +71,27 @@ const plateWordItem = computed(() => plateWords.find((word) => word.id === plate
 const plateValues = computed(
   () => `${platePrefix.value}${plateWordItem.value?.value}${plateSuffix.value}-${plateCode.value}`,
 )
-const emit = defineEmits<{
-  (e: 'submit', plate: string): void
-}>()
+const emit = defineEmits<Emits>()
+const { notify } = useNotify()
 
 function handleSubmit() {
+  const parsed = validatePlate({
+    prefix: platePrefix.value,
+    suffix: plateSuffix.value,
+    code: plateCode.value,
+  })
+  if (!parsed.success) {
+    const { _errors } = parsed.error.format()
+    Object.values(_errors).forEach((error) => {
+      notify({
+        title: 'خطا',
+        message: error,
+        type: 'error',
+        timeout: 4000,
+      })
+    })
+    return
+  }
   emit('submit', plateValues.value)
 }
 </script>

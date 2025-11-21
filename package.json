@@ -23,9 +23,11 @@
     "pinia": "^3.0.3",
     "tailwindcss": "^4.1.17",
     "vue": "^3.5.22",
-    "vue-router": "^4.6.3"
+    "vue-router": "^4.6.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@iconify/vue": "^4.3.0",
     "@prettier/plugin-oxc": "^0.0.4",
     "@tsconfig/node22": "^22.0.2",
     "@types/jsdom": "^27.0.0",

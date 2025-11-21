@@ -2,7 +2,7 @@ export interface PlateValue {
   code: string
   prefix: string
   suffix: string
-  word: PlateWord
+  word: string | PlateWord
 }
 
 export interface PlateWord {

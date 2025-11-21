@@ -2,19 +2,24 @@ import { ref } from 'vue'
 import { fetchInqueryByPlate } from './inquery.service'
 import { transformInqueryResponse } from './inquery.transform'
 import type { ApiResponse } from '@/types'
+import { useNotify } from '../useNotify'
 
 export default function useInquery() {
   const isLoading = ref(false)
-  const error = ref<string | null>(null)
-
+  const { notify } = useNotify()
   const getVehicleInfoByPlate = async (plate: string) => {
     isLoading.value = true
-    error.value = null
     try {
       const { data } = await fetchInqueryByPlate(plate)
       return transformInqueryResponse(data)
     } catch (err: unknown) {
-      error.value = (err as Error).message ?? 'خطایی رخ داده است'
+      const error = (err as Error).message ?? 'خطایی رخ داده است'
+      notify({
+        title: 'خطا',
+        message: error,
+        type: 'error',
+        timeout: 4000,
+      })
     } finally {
       isLoading.value = false
     }
@@ -22,7 +27,6 @@ export default function useInquery() {
 
   return {
     isLoading,
-    error,
     getVehicleInfoByPlate,
   }
 }

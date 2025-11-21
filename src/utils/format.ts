@@ -73,32 +73,6 @@ export interface PlateParts {
   code: string
 }
 
-export function formatPlate(plateRaw: string): FormattedPlate {
-  const raw = (plateRaw || '').replace(/\s+/g, '')
-  const idx = raw.lastIndexOf('-')
-  let left = raw
-  let code = ''
-  if (idx > -1) {
-    left = raw.slice(0, idx)
-    code = raw.slice(idx + 1)
-  }
-  const latinLeft = toLatinDigits(left)
-  const letterMatch = latinLeft.match(/[^\d]/)
-  const letterLabel = letterMatch ? letterMatch[0] : ''
-  const digitsPart = latinLeft.replace(/[^\d]/g, '')
-  const prefix = digitsPart.slice(0, 2)
-  const suffix = digitsPart.slice(2)
-  const persianPrefix = toPersianDigits(prefix)
-  const persianSuffix = toPersianDigits(suffix)
-  const persianCode = toPersianDigits(code)
-  const farsiPlate = `${persianPrefix}${letterLabel}${persianSuffix}${code ? '-' + persianCode : ''}`
-  const normalized = farsiPlate
-
-  const formatted = farsiPlate
-
-  return { normalized, formatted }
-}
-
 export function parsePlateParts(plateRaw: string): PlateParts {
   const raw = (plateRaw || '').replace(/\s+/g, '')
   const idx = raw.lastIndexOf('-')
@@ -109,8 +83,7 @@ export function parsePlateParts(plateRaw: string): PlateParts {
     code = raw.slice(idx + 1)
   }
   const latinLeft = toLatinDigits(left)
-  const letterMatch = latinLeft.match(/[^\d]/)
-  const word = letterMatch ? letterMatch[0] : ''
+  const word = latinLeft.replace(/\d/g, '')
   const digitsPart = latinLeft.replace(/[^\d]/g, '')
   const prefix = toPersianDigits(digitsPart.slice(0, 2))
   const suffix = toPersianDigits(digitsPart.slice(2))

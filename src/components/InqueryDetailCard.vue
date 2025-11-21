@@ -24,7 +24,7 @@
       <div class="flex flex-row justify-between items-center bg-green-100 p-3 rounded-md mt-6">
         <div class="flex flex-col text-green-800">
           <span class="text-xs font-bold mb-1">قیمت سالانه بیمه </span>
-          <span class="text-sm font-bold"> {{ annualInsurancePriceFormatted }} ریال </span>
+          <span class="text-sm font-bold"> {{ annualInsurancePrice }} ریال </span>
         </div>
 
         <button class="text-sm bg-green-800 text-white px-4 py-2 rounded-md">خرید بیمه</button>
