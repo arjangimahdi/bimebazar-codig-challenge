@@ -1,0 +1,224 @@
+{
+  "name": "Inquery Insurance Price Mock",
+  "uuid": "e9c7a689-2f91-4ab5-bd87-b8f9ea220819",
+  "port": 3000,
+  "hostname": "localhost",
+  "cors": true,
+  "routes": [
+    {
+      "uuid": "78f438b9-92fa-4ca3-95ec-969975a6fa98",
+      "method": "get",
+      "endpoint": "api/inquiry/plate=12alef124-12",
+      "responses": [
+        {
+          "uuid": "60592f5b-10f0-41a7-992c-c45659fdb563",
+          "statusCode": 200,
+          "body": "{\"plate\": \"۱۲الف۱۲۴-12\", \"brand\": \"بوگاتی\", \"model\": \"المنت\", \"make_date\": \"Tue Jul 28 2020 02:03:22 GMT+0430 (Iran Daylight Time)\", \"owner\": {\"name_full\": \"هلیا گل محمدی\", \"national_id\": \"0058662274\"}}",
+          "latency": 0,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "type": "http",
+      "documentation": "",
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "dcbb7c18-2319-4bee-bacd-dbf2a1fac31b",
+      "method": "get",
+      "endpoint": "api/inquiry/plate=34be133-55",
+      "responses": [
+        {
+          "uuid": "bdd5eeea-8ffc-4cd1-ab06-2a3b71532295",
+          "statusCode": 200,
+          "body": "{\"plate\": \"۳۴ب۱۳۳-55\", \"brand\": \"پراید\", \"model\": \"SX\", \"make_date\": \"Mon May 15 2017 11:12:00 GMT+0430 (Iran Daylight Time)\", \"owner\": {\"name_full\": \"آرش رضایی\", \"national_id\": \"0087669123\"}}",
+          "latency": 0,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "type": "http",
+      "documentation": "",
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "467cfd97-7c9d-4c7a-a2ba-895127cbbf98",
+      "method": "get",
+      "endpoint": "api/inquiry/plate=98jim976-22",
+      "responses": [
+        {
+          "uuid": "a6752693-5900-4c8f-98ff-40f8bf0b6dc8",
+          "statusCode": 200,
+          "body": "{\"plate\": \"۹۸ج۹۷۶-22\", \"brand\": \"دنا\", \"model\": \"پلاس\", \"make_date\": \"Sat Dec 18 2021 14:45:00 GMT+0430 (Iran Daylight Time)\", \"owner\": {\"name_full\": \"مریم احمدی\", \"national_id\": \"0067853095\"}}",
+          "latency": 0,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "type": "http",
+      "documentation": "",
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "5927e92d-ed98-45e2-be30-74201c1aa1ab",
+      "method": "get",
+      "endpoint": "/api/inquiry/plate=*",
+      "responses": [
+        {
+          "uuid": "0ca6332e-250a-4908-a390-2a2852647e8b",
+          "statusCode": 404,
+          "body": "{\"error\": \"خودرویی با این پلاک یافت نشد.\"}",
+          "latency": 0,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "type": "http",
+      "documentation": "",
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "c6f10b81-684b-4f1c-ad09-d339c09b181c",
+      "method": "get",
+      "endpoint": "api/inquiry/plate=19dal778-10",
+      "responses": [
+        {
+          "uuid": "cd494f53-397e-4c0a-ac13-37c8d46575e3",
+          "statusCode": 200,
+          "body": "{\n  \"plate\": \"۱۹د۷۷۸-10\",\n  \"brand\": \"مازراتی\",\n  \"model\": \"لِوانته\",\n  \"make_date\": \"Wed Sep 15 2021 14:22:10 GMT+0430 (Iran Daylight Time)\",\n  \"owner\": {\n    \"name_full\": \"سامیار نادری\",\n    \"national_id\": \"0942275318\"\n  }\n}\n",
+          "latency": 0,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "type": "http",
+      "documentation": "",
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "lastMigration": 33,
+  "endpointPrefix": "",
+  "latency": 0,
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "78f438b9-92fa-4ca3-95ec-969975a6fa98"
+    },
+    {
+      "type": "route",
+      "uuid": "dcbb7c18-2319-4bee-bacd-dbf2a1fac31b"
+    },
+    {
+      "type": "route",
+      "uuid": "467cfd97-7c9d-4c7a-a2ba-895127cbbf98"
+    },
+    {
+      "type": "route",
+      "uuid": "c6f10b81-684b-4f1c-ad09-d339c09b181c"
+    },
+    {
+      "type": "route",
+      "uuid": "5927e92d-ed98-45e2-be30-74201c1aa1ab"
+    }
+  ],
+  "folders": [],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [],
+  "proxyResHeaders": [],
+  "data": [],
+  "callbacks": []
+}
