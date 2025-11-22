@@ -56,6 +56,9 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
+const { notify } = useNotify()
 
 const plateCode = ref('')
 const platePrefix = ref('')
@@ -67,8 +70,6 @@ const plateWordItem = computed(() => plateWords.find((word) => word.id === plate
 const plateValues = computed(
   () => `${platePrefix.value}${plateWordItem.value?.value}${plateSuffix.value}-${plateCode.value}`,
 )
-const emit = defineEmits<Emits>()
-const { notify } = useNotify()
 
 function handleSubmit() {
   const parsed = validatePlate({

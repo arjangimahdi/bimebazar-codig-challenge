@@ -1,6 +1,4 @@
-const DB_NAME = 'bimebazar-db'
-const DB_VERSION = 1
-const STORE_INQUERIES = 'inqueries'
+import { DB_NAME, DB_VERSION, STORE_INQUERIES } from '@/constants/db'
 
 let dbPromise: Promise<IDBDatabase> | null = null
 

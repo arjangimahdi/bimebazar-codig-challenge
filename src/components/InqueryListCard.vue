@@ -39,7 +39,6 @@
 import { ref, defineAsyncComponent } from 'vue'
 
 import PlateNumber from '@/components/PlateNumber.vue'
-import type { InqueryTransformed } from '@/composables/inquery/inquery.types'
 import InqueryDetailCard from '@/components/InqueryDetailCard.vue'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import { UButton } from '@/components/ui'
@@ -48,17 +47,21 @@ const UModal = defineAsyncComponent(() => import('@/components/ui/modal/index.vu
 const UBottomSheet = defineAsyncComponent(() => import('@/components/ui/bottom-sheet/index.vue'))
 const UConfirmationDialog = defineAsyncComponent(() => import('@/components/ui/dialog/index.vue'))
 
-const breakpoints = useBreakpoints(breakpointsTailwind)
+import type { InqueryTransformed } from '@/composables/inquery/inquery.types'
 
-const isMobile = breakpoints.smaller('md')
-
-const props = defineProps<{
+interface Props {
   inquiry: InqueryTransformed & { plateEn: string; createdAt?: number | string }
-}>()
+}
 
-const emit = defineEmits<{
+interface Emits {
   (e: 'delete', plateEn: string): void
-}>()
+}
+
+const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const isMobile = breakpoints.smaller('md')
 
 const modalFlag = ref(false)
 const confirmationFlag = ref(false)

@@ -1,14 +1,5 @@
 import { defineStore } from 'pinia'
-
-export type NotificationType = 'success' | 'error' | 'warning' | 'info' | 'neutral'
-
-export interface NotificationItem {
-  id: number
-  title?: string
-  message: string
-  type: NotificationType
-  timeout?: number
-}
+import type { NotificationItem } from '@/types'
 
 let counter = 0
 

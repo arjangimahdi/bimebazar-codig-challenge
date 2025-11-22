@@ -9,9 +9,9 @@
       <template v-if="isLoading">
         <InqueryDetailCardSkeleton class="mt-12" />
       </template>
-      <template v-else-if="data">
+      <template v-else-if="inqueryDetails">
         <hr class="w-full border-t border-gray-200 my-6" />
-        <InqueryDetailCard :inquiry="data" />
+        <InqueryDetailCard :inquiry="inqueryDetails" />
       </template>
     </div>
   </section>
@@ -26,11 +26,11 @@ import type { InqueryTransformed } from '@/composables/inquery'
 import InqueryDetailCard from '@/components/InqueryDetailCard.vue'
 import InqueryDetailCardSkeleton from '@/components/InqueryDetailCardSkeleton.vue'
 
-const data = ref<InqueryTransformed | null>(null)
+const inqueryDetails = ref<InqueryTransformed | null>(null)
 
 const { getVehicleInfoByPlate, isLoading } = useInquery()
 
 const handleSubmit = async (plate: string) => {
-  data.value = (await getVehicleInfoByPlate(plate)) as InqueryTransformed
+  inqueryDetails.value = (await getVehicleInfoByPlate(plate)) as InqueryTransformed
 }
 </script>
