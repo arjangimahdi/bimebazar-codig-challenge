@@ -1,11 +1,11 @@
 import type { InqueryResponseDto, InqueryTransformed } from './inquery.types'
 import { formatPersianYearMonth, parsePlateParts, formatCurrency } from '@/utils/format'
-import { calculateAnnualInsurancePrice } from '@/utils/pricing'
+import { calculateInsurancePrice } from '@/composables/useCalculateInsuranceAmount'
 
 export function transformInqueryResponse(dto: InqueryResponseDto): InqueryTransformed {
   const plate = parsePlateParts(dto.plate)
   const manufacture = formatPersianYearMonth(dto.make_date)
-  const annualInsurancePrice = calculateAnnualInsurancePrice(dto.make_date)
+  const annualInsurancePrice = calculateInsurancePrice(dto.make_date)
   return {
     plate: {
       prefix: plate.prefix,
