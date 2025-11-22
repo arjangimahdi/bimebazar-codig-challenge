@@ -14,21 +14,22 @@
     </template>
     <div v-else class="flex flex-col justify-center items-center h-full gap-y-4">
       <p class="text-gray-500 text-base">هیچ استعلامی ثبت نشده است</p>
-      <RouterLink
-        to="/"
-        class="w-fit px-4 py-2 bg-blue-500 text-sm text-white rounded-md cursor-pointer hover:bg-blue-600 transition-all duration-300"
-        >استعلام قیمت بیمه خودرو</RouterLink
-      >
+      <RouterLink to="/">
+        <UButton color="info" size="md">استعلام قیمت بیمه خودرو</UButton>
+      </RouterLink>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { UButton } from '@/components/ui'
 import type { InqueryTransformed } from '@/composables/inquery/inquery.types'
 import { getAll, remove } from '@/providers/indexedDb'
 import InqueryListCard from '@/components/InqueryListCard.vue'
+
 type InqueryListItem = InqueryTransformed & { plateEn: string; createdAt?: number | string }
+
 const inqueries = ref<InqueryListItem[]>([])
 
 onMounted(async () => {

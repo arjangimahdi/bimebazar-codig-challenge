@@ -7,10 +7,7 @@
             :href="href"
             @click="navigate"
             :aria-current="isActive ? 'page' : undefined"
-            :class="[
-              'flex items-center justify-center px-4 py-4 transition-colors text-sm font-medium gap-x-2',
-              isActive ? 'bg-blue-200 text-blue-700 border-blue-200' : 'bg-gray-200',
-            ]"
+            :class="getLinkClass(isActive)"
           >
             <Icon v-if="tab.icon" :icon="tab.icon" class="w-5 h-5" aria-hidden="true" />
             <span>{{ tab.title }}</span>
@@ -23,18 +20,12 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: 'UiTabs' })
+defineOptions({ name: 'UTabs' })
 import { Icon } from '@iconify/vue'
 import { RouterLink } from 'vue-router'
+import type { TabsProps } from './tabs.types'
+import { useTabs } from './useTabs'
 
-interface TabItem {
-  id: number
-  title: string
-  icon: string
-  route: string
-}
-
-defineProps<{
-  items: TabItem[]
-}>()
+const props = defineProps<TabsProps>()
+const { getLinkClass } = useTabs(props)
 </script>

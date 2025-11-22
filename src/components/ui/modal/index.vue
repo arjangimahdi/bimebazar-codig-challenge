@@ -29,14 +29,16 @@
                     {{ title }}
                   </span>
                 </slot>
-                <button
+                <UButton
                   v-if="!hideCloseButton"
-                  class="p-1 text-xs bg-transparent cursor-pointer"
+                  variant="ghost"
+                  size="sm"
+                  class="p-1 text-xs"
                   aria-label="بستن"
                   @click="close"
                 >
                   <Icon icon="mdi:close" class="size-6" />
-                </button>
+                </UButton>
               </div>
 
               <div
@@ -61,63 +63,23 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: 'UiModal' })
-import { ref, onMounted, onUnmounted } from 'vue'
+defineOptions({ name: 'UModal' })
 import { Icon } from '@iconify/vue'
+import UButton from '@/components/ui/button/index.vue'
+import type { ModalProps, ModalEmits } from './modal.types'
+import { useModal } from './useModal'
 
-const props = withDefaults(
-  defineProps<{
-    modelValue: boolean
-    padded?: boolean
-    title?: string
-    hideCloseButton?: boolean
-    closeOnClickOutside?: boolean
-    closeOnEsc?: boolean
-    lockScroll?: boolean
-    maxWidth?: string
-  }>(),
-  {
-    padded: true,
-    title: '',
-    hideCloseButton: false,
-    closeOnClickOutside: true,
-    closeOnEsc: true,
-    lockScroll: false,
-    maxWidth: 'max-w-fit',
-  },
-)
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-  (e: 'close'): void
-  (e: 'open'): void
-}>()
-
-const dialogContent = ref<HTMLElement | null>(null)
-
-const close = () => {
-  emit('update:modelValue', false)
-  emit('close')
-}
-
-const handleOverlayClick = (event: MouseEvent) => {
-  if (!props.closeOnClickOutside) return
-  if (dialogContent.value && !dialogContent.value.contains(event.target as Node)) {
-    close()
-  }
-}
-
-const handleKeydown = (e: KeyboardEvent) => {
-  if (e.key === 'Escape' && props.closeOnEsc && props.modelValue) {
-    close()
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('keydown', handleKeydown)
+const props = withDefaults(defineProps<ModalProps>(), {
+  padded: true,
+  title: '',
+  hideCloseButton: false,
+  closeOnClickOutside: true,
+  closeOnEsc: true,
+  lockScroll: false,
+  maxWidth: 'max-w-fit',
 })
 
-onUnmounted(() => {
-  document.removeEventListener('keydown', handleKeydown)
-})
+const emit = defineEmits<ModalEmits>()
+
+const { dialogContent, close, handleOverlayClick } = useModal(props as Required<ModalProps>, emit)
 </script>

@@ -36,52 +36,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+defineOptions({ name: 'UBottomSheet' })
+import type { BottomSheetProps, BottomSheetEmits } from './bottom-sheet.types'
+import { useBottomSheet } from './useBottomSheet'
 
-interface Props {
-  modelValue?: boolean
-  padded?: boolean
-  lockScroll?: boolean
-}
-
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<BottomSheetProps>(), {
   modelValue: false,
   padded: true,
   lockScroll: false,
 })
+const emit = defineEmits<BottomSheetEmits>()
 
-const emit = defineEmits(['update:modelValue', 'close'])
-
-const close = () => {
-  emit('update:modelValue', false)
-  emit('close')
-}
-
-const startY = ref(0)
-const translateY = ref(0)
-const dragging = ref(false)
-const threshold = 100
-
-function onTouchStart(e: TouchEvent) {
-  if (e.touches[0]) {
-    startY.value = e.touches[0].clientY
-    dragging.value = true
-  }
-}
-
-function onTouchMove(e: TouchEvent) {
-  if (e.touches[0] && dragging.value) {
-    e.preventDefault()
-    const delta = e.touches[0].clientY - startY.value
-    translateY.value = delta > 0 ? delta : 0
-  }
-}
-
-function onTouchEnd() {
-  if (translateY.value > threshold) {
-    close()
-  }
-  translateY.value = 0
-  dragging.value = false
-}
+const { dragging, translateY, close, onTouchStart, onTouchMove, onTouchEnd } = useBottomSheet(
+  props as Required<BottomSheetProps>,
+  emit,
+)
 </script>

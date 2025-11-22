@@ -14,9 +14,9 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: 'UiNotifications' })
+defineOptions({ name: 'UNotifications' })
 import { storeToRefs } from 'pinia'
-import Notification from '@/components/ui/Notification.vue'
+import Notification from '@/components/ui/notification/index.vue'
 import { useNotificationsStore } from '@/stores/notifications'
 
 const store = useNotificationsStore()

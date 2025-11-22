@@ -3,7 +3,7 @@
     <div class="flex flex-row-reverse bg-white border-2 border-black rounded-md">
       <div class="flag-vector-container bg-contain bg-center bg-no-repeat" />
       <div class="flex flex-row-reverse items-stretch">
-        <MaskInput
+        <UMaskInput
           dir="ltr"
           v-model="platePrefix"
           maxlength="2"
@@ -15,7 +15,7 @@
             {{ word.label }}
           </option>
         </select>
-        <MaskInput
+        <UMaskInput
           dir="ltr"
           v-model="plateSuffix"
           maxlength="3"
@@ -25,7 +25,7 @@
       </div>
       <div class="flex flex-col text-center justify-around border-e-2 border-black">
         <span class="text-xs font-bold pt-2"> ایران </span>
-        <MaskInput
+        <UMaskInput
           dir="ltr"
           v-model="plateCode"
           maxlength="2"
@@ -34,22 +34,18 @@
         />
       </div>
     </div>
-    <button
-      @click="handleSubmit"
-      :disabled="props.isLoading"
-      class="w-full h-12 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-    >
+    <UButton block size="lg" :loading="props.isLoading" @click="handleSubmit">
       {{ props.isLoading ? 'در حال ارسال...' : 'تایید و ادامه' }}
-    </button>
+    </UButton>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import MaskInput from '@/components/ui/MaskInput.vue'
-import plateWords from '@/constants/plate-words.const'
-import { validatePlate } from '@/validation/plate'
+import { UButton, UMaskInput } from '@/components/ui'
 import { useNotify } from '@/composables/useNotify'
+import { validatePlate } from '@/validation/plate'
+import plateWords from '@/constants/plate-words.const'
 
 interface Emits {
   (e: 'submit', plate: string): void

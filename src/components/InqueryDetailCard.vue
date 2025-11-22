@@ -7,7 +7,7 @@
         <span class="text-sm"> سال ساخت :‌ {{ inquiry.modelYear }} </span>
       </div>
 
-      <Plate :plate="inquiry.plate" class="w-fit ms-auto" />
+      <PlateNumber :plate="inquiry.plate" class="w-fit ms-auto" />
 
       <hr class="w-full border-t border-gray-200 my-4" />
 
@@ -27,16 +27,17 @@
           <span class="text-sm font-bold"> {{ inquiry.annualInsurancePrice }} ریال </span>
         </div>
 
-        <button class="text-sm bg-green-800 text-white px-4 py-2 rounded-md">خرید بیمه</button>
+        <UButton color="green" size="md">خرید بیمه</UButton>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import Plate from '@/components/PlateNumber.vue'
-
+import { UButton } from '@/components/ui'
+import PlateNumber from '@/components/PlateNumber.vue'
 import type { InqueryTransformed } from '@/composables/inquery/inquery.types'
+
 defineProps<{
   inquiry: InqueryTransformed
 }>()

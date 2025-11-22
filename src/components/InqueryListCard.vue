@@ -10,48 +10,43 @@
       <PlateNumber :plate="inquiry.plate" />
     </div>
     <div class="flex items-center justify-end gap-x-2">
-      <button
-        @click="confirmationFlag = true"
-        class="px-2 py-1 text-xs bg-transparent text-red-600 border border-red-600 rounded-md cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-300"
-      >
+      <UButton size="sm" variant="outline" color="error" @click="confirmationFlag = true">
         حذف استعلام
-      </button>
-      <button
-        @click="modalFlag = true"
-        class="px-2 py-1 text-xs bg-transparent text-blue-600 border border-blue-600 rounded-md cursor-pointer hover:bg-blue-500 hover:text-white transition-all duration-300"
-      >
+      </UButton>
+      <UButton size="sm" variant="outline" color="info" @click="modalFlag = true">
         مشاهده بیشتر
-      </button>
+      </UButton>
     </div>
-    <BottomSheet v-if="isMobile" v-model="modalFlag" title="اطلاعات استعلام" :padded="false">
+    <UBottomSheet v-if="isMobile" v-model="modalFlag" :padded="false">
       <InqueryDetailCard :inquiry="inquiry" class="min-w-full" />
-    </BottomSheet>
-    <Modal v-else v-model="modalFlag" title="اطلاعات استعلام" :padded="false">
+    </UBottomSheet>
+    <UModal v-else v-model="modalFlag" title="اطلاعات استعلام" :padded="false">
       <InqueryDetailCard :inquiry="inquiry" class="min-w-sm" />
-    </Modal>
+    </UModal>
 
-    <ConfirmationDialog
+    <UConfirmationDialog
       v-if="confirmationFlag"
       v-model="confirmationFlag"
       title="حذف استعلام"
       @confirm="deleteInquiry"
     >
       <p>آیا می خواهید استعلام خود را حذف کنید؟</p>
-    </ConfirmationDialog>
+    </UConfirmationDialog>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, defineAsyncComponent } from 'vue'
-const Modal = defineAsyncComponent(() => import('@/components/ui/Modal.vue'))
-const BottomSheet = defineAsyncComponent(() => import('@/components/ui/BottomSheet.vue'))
-const ConfirmationDialog = defineAsyncComponent(
-  () => import('@/components/ui/ConfirmationDialog.vue'),
-)
+
 import PlateNumber from '@/components/PlateNumber.vue'
 import type { InqueryTransformed } from '@/composables/inquery/inquery.types'
 import InqueryDetailCard from '@/components/InqueryDetailCard.vue'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import { UButton } from '@/components/ui'
+
+const UModal = defineAsyncComponent(() => import('@/components/ui/modal/index.vue'))
+const UBottomSheet = defineAsyncComponent(() => import('@/components/ui/bottom-sheet/index.vue'))
+const UConfirmationDialog = defineAsyncComponent(() => import('@/components/ui/dialog/index.vue'))
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
