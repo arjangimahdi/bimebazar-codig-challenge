@@ -10,7 +10,7 @@
           placeholder="&#8212;&#8212;"
           class="w-18"
         />
-        <select v-model="plateWordId" class="px-2 text-xl font-bold outline-none">
+        <select v-model="plateWordId" class="px-2 text-xl font-bold">
           <option v-for="word in plateWords" :key="word.id" :value="word.id">
             {{ word.label }}
           </option>

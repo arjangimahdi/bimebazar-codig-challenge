@@ -1,9 +1,7 @@
 <template>
-  <div class="bg-gray-100 px-6 h-full overflow-y-auto">
+  <div class="bg-gray-100 px-6 pb-6 h-full overflow-y-auto">
     <template v-if="inqueries.length > 0">
-      <h1 class="text-xl font-bold py-6 sticky top-0 bg-gray-100">
-        تاریخچه استعلام قیمت بیمه خودرو
-      </h1>
+      <h1 class="text-xl font-bold pt-6 bg-gray-100">تاریخچه استعلام قیمت بیمه خودرو</h1>
       <InqueryListCard
         class="mt-4"
         v-for="inquiry in inqueries"
